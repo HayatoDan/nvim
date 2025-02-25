@@ -1,7 +1,7 @@
 -- -- リーダーキー設定
 -- lazy.luaの中で設定
--- vim.g.mapleader = ' '
--- vim.g.localmapleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 
 -- 表示行でカーソル移動
