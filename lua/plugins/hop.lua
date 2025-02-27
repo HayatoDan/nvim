@@ -3,7 +3,7 @@ return{
     'smoka7/hop.nvim',
     version = "*",
     keys = {
-        { "<leader><leader>e", "<cmd>HopWord<CR>", desc = "HopWord" },
+        { "<leader>e", "<cmd>HopWord<CR>", desc = "HopWord" },
       },
       config = function()
         require("hop").setup {

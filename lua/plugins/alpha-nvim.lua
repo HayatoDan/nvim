@@ -1,3 +1,6 @@
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+map('n', '<leader>H', '<Cmd>Alpha<CR>', opts)
 
 return {
   'goolord/alpha-nvim',
@@ -14,7 +17,6 @@ return {
       "Welcome to Neovim!"
     }
 
-    -- 基本のボタン群
     dashboard.section.buttons.val = {
       dashboard.button("e", "New file", ":ene <BAR> startinsert<CR>"),
       dashboard.button("f", "Find file", ":Telescope find_files<CR>"),
@@ -22,11 +24,11 @@ return {
       dashboard.button("q", "Quit", ":qa<CR>")
     }
 
-    -- Windows上でのみ Daily Note ボタンを追加
+    -- Windows上のみ Daily Note ボタンを追加（"Quit" の前に挿入）
     if vim.loop.os_uname().sysname:find("Windows") then
       table.insert(
         dashboard.section.buttons.val,
-        4,  -- 好みの位置に挿入（ここでは「Quit」ボタンの前に追加）
+        4,
         dashboard.button("d", "Daily Note", ":lua require('user.daily_note').open_daily_note()<CR>")
       )
     end
