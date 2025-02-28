@@ -25,21 +25,26 @@ local function selectionCount()
     end
 
     local chars = 0
+    local words = 0
+
     for i = start_line, end_line do
         local line = vim.fn.getline(i)
         local line_len = vim.fn.strlen(line)
         local s_pos = (i == start_line) and start_pos or 1
         local e_pos = (i == end_line) and end_pos or line_len + 1
-        local selected_text = line:sub(s_pos, e_pos )
+        local selected_text = line:sub(s_pos, e_pos)
 
-        -- 半角スペースと全角スペースを削除
-        selected_text = vim.fn.substitute(selected_text, "[ 　]", "", "g")
+        -- 半角スペースと全角スペースを削除して文字数カウント
+        local clean_text = vim.fn.substitute(selected_text, "[ 　]", "", "g")
+        chars = chars + vim.fn.strchars(clean_text)
 
-        chars = chars + vim.fn.strchars(selected_text)
+        -- 単語数をカウント（空白で区切る）
+        local word_list = vim.fn.split(selected_text, "\\s\\+")
+        words = words + #word_list
     end
 
     local lines = math.abs(end_line - start_line) + 1
-    return tostring(lines) .. " lines, " .. tostring(chars) .. " characters"
+    return tostring(lines) .. " lines, " .. tostring(words) .. " words, " .. tostring(chars) .. " characters"
 end
 
 return {

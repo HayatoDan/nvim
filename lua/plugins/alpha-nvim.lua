@@ -1,12 +1,12 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-map('n', '<leader>H', '<Cmd>Alpha<CR>', opts)
+map('n', '<leader><leader>', '<Cmd>Alpha<CR>', opts)
 
 return {
   'goolord/alpha-nvim',
   dependencies = {
     'nvim-telescope/telescope.nvim',
-    'lambdalisue/fern.vim',
+    -- 'lambdalisue/fern.vim',
   },
   config = function()
     local alpha = require("alpha")
