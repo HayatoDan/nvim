@@ -18,9 +18,10 @@ return {
     }
 
     dashboard.section.buttons.val = {
-      dashboard.button("e", "New file", ":ene <BAR> startinsert<CR>"),
-      dashboard.button("f", "Find file", ":Telescope find_files<CR>"),
+      dashboard.button("n", "New file", ":ene <BAR> startinsert<CR>"),
+      dashboard.button("f", "File browser", ":Telescope file_browser path=%:p:h select_buffer=true<CR>"),
       dashboard.button("r", "Recent files", ":Telescope oldfiles<CR>"),
+      dashboard.button("m", "Keymaps", ":Telescope keymaps<CR>"),
       dashboard.button("q", "Quit", ":qa<CR>")
     }
 
