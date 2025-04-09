@@ -6,8 +6,9 @@ M.open_daily_note = function()
   -- Windows環境の場合、%USERPROFILE%を使用。必要に応じてHOMEなどに変更してください。
   local base_dir = os.getenv("USERPROFILE") .. "/Dropbox/obsidian/myvault"
   local vault_dir = base_dir .. "/dailynotes"
+  local year = os.date("%Y")
   local today = os.date("%Y-%m-%d")
-  local note_file = vault_dir .. "/" .. today .. ".md"
+  local note_file = vault_dir .. "/" .. year .. "/" .. today .. ".md"
   local template_file = base_dir .. "/template/dailynote_nvim_template.md"
 
   -- ファイルが存在しない場合、テンプレートファイルを読み込んで新規作成する
