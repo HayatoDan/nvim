@@ -1,4 +1,5 @@
 require("config.keymaps")
+require("config.smart_save")
 require("config.option")
 require("config.windows_option")
 require("config.lazy")
