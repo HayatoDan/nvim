@@ -12,10 +12,23 @@ local function smart_save()
       default_dir = vim.fn.getcwd()
     end
 
+    -- コマンドラインモードでのファイル補完用キーマッピングを一時的に設定
+    -- 上下: 同一ディレクトリ内移動、左右: 親/子ディレクトリ移動
+    vim.keymap.set('c', '<Up>', '<Left>', { noremap = true })
+    vim.keymap.set('c', '<Down>', '<Right>', { noremap = true })
+    vim.keymap.set('c', '<Left>', '<Up>', { noremap = true })
+    vim.keymap.set('c', '<Right>', '<Down>', { noremap = true })
+
     -- 入力セーフティ開始
     vim.fn.inputsave()
     local fname = vim.fn.input("Save as ...: ", default_dir .. "/", "file")
     vim.fn.inputrestore()
+
+    -- マッピングを元に戻す
+    vim.keymap.del('c', '<Up>')
+    vim.keymap.del('c', '<Down>')
+    vim.keymap.del('c', '<Left>')
+    vim.keymap.del('c', '<Right>')
 
     if fname ~= "" then
       vim.cmd("write " .. fname)
